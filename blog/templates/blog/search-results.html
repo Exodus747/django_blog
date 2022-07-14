@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<center>
+{% if searched %}
+
+   <h1>You Searched For : {{searched}} </h1>
+ 
+   {% for user in users %}
+
+      <article class="media content-section">
+         <div class="article-metadata">
+            <a class="mr-2" href="{% url 'user-posts' user.username %}">
+               <h2>{{ user.username }}</h2>
+            </a>
+         </div> 
+      </article>
+   {% endfor %}
+
+   {% for post in posts %}
+
+         <article class="media content-section">
+            <div class="article-metadata">
+               <a class="mr-2" href="{% url 'post-detail' post.pk %}">
+                  <h2 style="text-align: center;">{{ post.title}}</h2>
+               </a>
+         </div> 
+      </article>
+   {% endfor %}
+
+{% else %}
+   <h1>No Results</h1>
+</center>
+{% endif %}
+
+{% endblock %}
